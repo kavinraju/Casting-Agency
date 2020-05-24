@@ -4,12 +4,14 @@ import json
 
 from ..database.models import setup_db, Actor, Movie
 from ..app import app
+from ..auth.auth import requires_auth
 
 """ POST """
-# Post actors and movies
 
+# Create new actors
 @app.route('/actor', methods=['POST'])
-def create_actor():
+@requires_auth('create:actor')
+def create_actor(payload):
     body = request.get_json()
     print('body ', body)
     if not body:
@@ -38,8 +40,10 @@ def create_actor():
                 'error': str(e)
             })
 
+# Create new movies
 @app.route('/movie', methods=['POST'])
-def create_movie():
+@requires_auth('create:movie')
+def create_movie(payload):
     body = request.get_json()
     print('body ', body)
     if not body:
@@ -77,10 +81,11 @@ def create_movie():
             })
 
 """ GET """
-# Get actors of movie_id
 
+# Get actors of 'movie_id'
 @app.route('/movie/<int:movie_id>/actors',methods=['GET'])
-def get_actors_of_a_movie(movie_id):
+@requires_auth('get:movies, get:actors')
+def get_actors_of_a_movie(payload, movie_id):
     movie = Movie.query.filter_by(id=movie_id).one_or_none()
     if movie is None:
         return jsonify({
@@ -96,7 +101,8 @@ def get_actors_of_a_movie(movie_id):
 
 # Get movies
 @app.route('/movie', methods=['GET'])
-def get_movies():
+@requires_auth('get:movies')
+def get_movies(payload):
     try:
         movies = Movie.query.order_by(Movie.id).all()
         movies_formated = [movie.format() for movie in movies]
@@ -114,7 +120,8 @@ def get_movies():
 
 # Get actors
 @app.route('/actor', methods=['GET'])
-def get_actors():
+@requires_auth('get:actors')
+def get_actors(payload):
     try:
         actors = Actor.query.order_by(Actor.id).all()
         actors_formated = [actor.format() for actor in actors]
@@ -131,9 +138,11 @@ def get_actors():
         })
 
 """ PATCH """
+
 # Update movie details
 @app.route('/movie/<int:movie_id>', methods=['PATCH'])
-def update_movie(movie_id):
+@requires_auth('update:movie')
+def update_movie(payload, movie_id):
     try:
         movie = Movie.query.filter(Movie.id == movie_id).one_or_none()
 
@@ -176,7 +185,8 @@ def update_movie(movie_id):
 
 # Update actor details
 @app.route('/actor/<int:actor_id>', methods=['PATCH'])
-def update_actor(actor_id):
+@requires_auth('update:actor')
+def update_actor(payload, actor_id):
     try:
         actor = Actor.query.filter_by(id=actor_id).one_or_none()
 
@@ -211,8 +221,11 @@ def update_actor(actor_id):
         })
 
 """ DELETE """
+
+# Delete actor with 'actor_id'
 @app.route('/actor/<int:actor_id>', methods=['DELETE'])
-def delete_actor(actor_id):
+@requires_auth('delete:actor')
+def delete_actor(payload, actor_id):
     try:
         actor = actor = Actor.query.filter_by(id=actor_id).one_or_none()
         if actor is None:
@@ -231,8 +244,10 @@ def delete_actor(actor_id):
             'error': str(e)
         })
 
+# Delete movie with 'movie_id'
 @app.route('/movie/<int:movie_id>', methods=['DELETE'])
-def delete_movie(movie_id):
+@requires_auth('delete:movie')
+def delete_movie(payload, movie_id):
     try:
         movie = movie = Movie.query.filter_by(id=movie_id).one_or_none()
         if movie is None:
