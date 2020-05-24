@@ -4,7 +4,7 @@ import json
 
 from ..database.models import setup_db, Actor, Movie
 from ..app import app
-from ..auth.auth import requires_auth
+from ..auth.auth import requires_auth, AuthError
 
 """ POST """
 
@@ -272,3 +272,38 @@ def index():
     return jsonify({
         'message': 'HOME PAGE'
     })
+
+## Error Handling ##
+
+'''
+Error handler for unprocessable entity
+'''
+@app.errorhandler(422)
+def unprocessable(error):
+    return jsonify({
+        "success": False,
+        "error": 422,
+        "message": "unprocessable"
+    }), 422
+
+'''
+Error handler for 404
+'''
+@app.errorhandler(404)
+def resource_not_found(error):
+    return jsonify({
+        "success": False,
+        "error": 404,
+        "message": "resource not found"
+    }), 404
+
+'''
+Error handler for AuthError
+'''
+@app.errorhandler(AuthError)
+def autherror(error):
+    return jsonify({
+        "success": False,
+        "error": error.status_code,
+        "message": error.error
+    }), error.status_code
