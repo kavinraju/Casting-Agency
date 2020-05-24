@@ -3,7 +3,7 @@ from sqlalchemy import exc
 import json
 
 from ..database.models import setup_db, Actor, Movie
-from ..app import app
+from ..app import app, ErrorMessages
 from ..auth.auth import requires_auth, AuthError
 
 """ POST """
@@ -283,7 +283,7 @@ def unprocessable(error):
     return jsonify({
         "success": False,
         "error": 422,
-        "message": "unprocessable"
+        "message": ErrorMessages.ERROR_422_MESSAGE.value
     }), 422
 
 '''
@@ -294,8 +294,19 @@ def resource_not_found(error):
     return jsonify({
         "success": False,
         "error": 404,
-        "message": "resource not found"
+        "message": ErrorMessages.ERROR_404_MESSAGE.value
     }), 404
+
+'''
+Error handler for 405
+'''
+@app.errorhandler(405)
+def method_not_allowed(error):
+    return jsonify({
+        "success": False,
+        "error": 405,
+        "message": ErrorMessages.ERROR_405_MESSAGE.value
+    }), 405
 
 '''
 Error handler for AuthError
