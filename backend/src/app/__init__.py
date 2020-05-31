@@ -3,7 +3,7 @@ from sqlalchemy import exc
 import json
 import enum
 
-from .database.models import setup_db
+from database.models import setup_db
 
 class ErrorMessages(enum.Enum):
     ERROR_400_MESSAGE = "Bad request"
@@ -15,4 +15,4 @@ app = Flask(__name__)
 setup_db(app)
 
 """ Importing api endpoint from app/api.py """
-from .api.api import *
+from api.api import *

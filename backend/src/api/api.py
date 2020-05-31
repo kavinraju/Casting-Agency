@@ -2,16 +2,16 @@ from flask import Flask, request, jsonify, abort
 from sqlalchemy import exc
 import json
 
-from ..database.models import setup_db, Actor, Movie
-from ..app import app, ErrorMessages
-from ..auth.auth import requires_auth, AuthError
+from database.models import setup_db, Actor, Movie
+from app import app, ErrorMessages
+from auth.auth import requires_auth, AuthError
 
 """ POST """
 
 # Create new actors
 @app.route('/actor', methods=['POST'])
-@requires_auth('create:actor')
-def create_actor(payload):
+#@requires_auth('create:actor')
+def create_actor():
     body = request.get_json()
     print('body ', body)
     if not body:
@@ -34,16 +34,13 @@ def create_actor(payload):
                 'actors': actors_formated,
                 'total_actors': len(actors_formated)
             })
-        except Exception as e:
-            return jsonify({
-                'success':  False,
-                'error': str(e)
-            })
+        except:
+            abort(422) # Unprocessable Entity
 
 # Create new movies
 @app.route('/movie', methods=['POST'])
-@requires_auth('create:movie')
-def create_movie(payload):
+#@requires_auth('create:movie')
+def create_movie():
     body = request.get_json()
     print('body ', body)
     if not body:
@@ -74,23 +71,18 @@ def create_movie(payload):
                 'movies': movies_formated,
                 'total_movies': len(movies_formated)
             })
-        except Exception as e:
-            return jsonify({
-                'success':  False,
-                'error': str(e)
-            })
+        except:
+            abort(422) # Unprocessable Entity
 
 """ GET """
 
 # Get actors of 'movie_id'
 @app.route('/movie/<int:movie_id>/actors',methods=['GET'])
-@requires_auth('get:movies, get:actors')
-def get_actors_of_a_movie(payload, movie_id):
+#@requires_auth('get:movies, get:actors')
+def get_actors_of_a_movie(movie_id):
     movie = Movie.query.filter_by(id=movie_id).one_or_none()
     if movie is None:
-        return jsonify({
-            'success': False
-        })
+        abort(404)
     else:
         actors = movie.actors
         actors_formated = [actor.format() for actor in actors]
@@ -101,8 +93,8 @@ def get_actors_of_a_movie(payload, movie_id):
 
 # Get movies
 @app.route('/movie', methods=['GET'])
-@requires_auth('get:movies')
-def get_movies(payload):
+#@requires_auth('get:movies')
+def get_movies():
     try:
         movies = Movie.query.order_by(Movie.id).all()
         movies_formated = [movie.format() for movie in movies]
@@ -112,16 +104,13 @@ def get_movies(payload):
             'movies': movies_formated,
             'total_movies': len(movies)
         })
-    except Exception as e:
-        return jsonify({
-            'success': False,
-            'error': str(e)
-        })
+    except:
+        abort(422) # Unprocessable Entity
 
 # Get actors
 @app.route('/actor', methods=['GET'])
-@requires_auth('get:actors')
-def get_actors(payload):
+#@requires_auth('get:actors')
+def get_actors():
     try:
         actors = Actor.query.order_by(Actor.id).all()
         actors_formated = [actor.format() for actor in actors]
@@ -131,18 +120,15 @@ def get_actors(payload):
             'actors': actors_formated,
             'total_actors': len(actors)
         })
-    except Exception as e:
-        return jsonify({
-            'success': False,
-            'error': str(e)
-        })
+    except:
+        abort(422) # Unprocessable Entity
 
 """ PATCH """
 
 # Update movie details
 @app.route('/movie/<int:movie_id>', methods=['PATCH'])
-@requires_auth('update:movie')
-def update_movie(payload, movie_id):
+#@requires_auth('update:movie')
+def update_movie(movie_id):
     try:
         movie = Movie.query.filter(Movie.id == movie_id).one_or_none()
 
@@ -177,16 +163,13 @@ def update_movie(payload, movie_id):
             'updated_movie': movie.format(),
             'total_movies': len(movies)
         })
-    except Exception as e:
-        return jsonify({
-            'success': False,
-            'error': str(e)
-        })
+    except:
+        abort(422) # Unprocessable Entity
 
 # Update actor details
 @app.route('/actor/<int:actor_id>', methods=['PATCH'])
-@requires_auth('update:actor')
-def update_actor(payload, actor_id):
+#@requires_auth('update:actor')
+def update_actor(actor_id):
     try:
         actor = Actor.query.filter_by(id=actor_id).one_or_none()
 
@@ -214,18 +197,15 @@ def update_actor(payload, actor_id):
             'updated_actor': actor.format(),
             'total_actors': len(actors)
         })
-    except Exception as e:
-        return jsonify({
-            'success': False,
-            'error': str(e)
-        })
+    except:
+        abort(422) # Unprocessable Entity
 
 """ DELETE """
 
 # Delete actor with 'actor_id'
 @app.route('/actor/<int:actor_id>', methods=['DELETE'])
-@requires_auth('delete:actor')
-def delete_actor(payload, actor_id):
+#@requires_auth('delete:actor')
+def delete_actor(actor_id):
     try:
         actor = actor = Actor.query.filter_by(id=actor_id).one_or_none()
         if actor is None:
@@ -238,16 +218,13 @@ def delete_actor(payload, actor_id):
             'deleted_actor': actor_id,
             'total_actors': len(actors)
         })
-    except Exception as e:
-        return jsonify({
-            'success': False,
-            'error': str(e)
-        })
+    except:
+        abort(422) # Unprocessable Entity
 
 # Delete movie with 'movie_id'
 @app.route('/movie/<int:movie_id>', methods=['DELETE'])
-@requires_auth('delete:movie')
-def delete_movie(payload, movie_id):
+#@requires_auth('delete:movie')
+def delete_movie(movie_id):
     try:
         movie = movie = Movie.query.filter_by(id=movie_id).one_or_none()
         if movie is None:
@@ -260,11 +237,8 @@ def delete_movie(payload, movie_id):
             'deleted_movie': movie_id,
             'total_movies': len(movies)
         })
-    except Exception as e:
-        return jsonify({
-            'success': False,
-            'error': str(e)
-        })
+    except:
+        abort(422) # Unprocessable Entity
 
 
 @app.route('/')

@@ -5,19 +5,20 @@ from datetime import datetime
 import json
 
 """ keystore consists of all the passwords required for the backend """
-from ..environments.config.config import local_database_path
+from environments.config.config import local_database_path, SQLALCHEMY_TRACK_MODIFICATIONS
 
-database_path = local_database_path
+database_path_default = local_database_path
 
 db = SQLAlchemy()
 
-def setup_db(app, database_path=database_path):
-    app.config.from_pyfile('environments\config\config.py')
-    #app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
-    #app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = SQLALCHEMY_TRACK_MODIFICATIONS
+def setup_db(app, database_path=database_path_default):
+    #app.config.from_pyfile('environments\config\config.py')
+    app.config['SQLALCHEMY_DATABASE_URI'] = database_path
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = SQLALCHEMY_TRACK_MODIFICATIONS
     db.app = app
     db.init_app(app)
     migrate = Migrate(app, db)
+    db.create_all() # Uncomment this while running the unit test for the first time.
 
 
 movie_actors = db.Table('movie_actors',

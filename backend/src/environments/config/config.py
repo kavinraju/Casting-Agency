@@ -14,8 +14,13 @@ heroku_database_uri = heroku_database_uri_env
 database_name = database_name_env
 username = username_env
 password = password_env
-local_database_path = "postgres://{}:{}@{}/{}".format(username, password, 'localhost:5432', database_name)
+local_database_path = "postgresql://{}:{}@{}/{}".format(username, password, 'localhost:5432', database_name)
 # Database connection string
 SQLALCHEMY_DATABASE_URI = local_database_path
 # Supress warning
 SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+
+def get_data_base_path(username, password, database_name):
+    database_path = "postgresql://{}:{}@{}/{}".format(username, password, 'localhost:5432', database_name)
+    return database_path
