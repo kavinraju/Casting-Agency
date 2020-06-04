@@ -4,7 +4,7 @@ from jose import jwt
 from urllib.request import urlopen
 import json
 
-from environments.env_file import *
+from environments.config.config import AUTH0_DOMAIN_ENV, ALGORITHMS_ENV, API_AUDIENCE_ENV
 
 AUTH0_DOMAIN = AUTH0_DOMAIN_ENV
 ALGORITHMS = ALGORITHMS_ENV

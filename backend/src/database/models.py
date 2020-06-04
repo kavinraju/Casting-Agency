@@ -5,9 +5,9 @@ from datetime import datetime
 import json
 
 """ keystore consists of all the passwords required for the backend """
-from environments.config.config import local_database_path, SQLALCHEMY_TRACK_MODIFICATIONS
+from environments.config.config import database_uri, SQLALCHEMY_TRACK_MODIFICATIONS
 
-database_path_default = local_database_path
+database_path_default = database_uri
 
 db = SQLAlchemy()
 
