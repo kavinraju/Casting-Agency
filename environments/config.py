@@ -3,7 +3,7 @@ import os
 ## Uncomment this while running the test alone.
 # This requries you to add a env_file.py file in the environments directory with
 # username and password values of you local environment.
-from environments.env_file import *
+#from environments.env_file import *
 
 SECRET_KEY = os.urandom(32)
 # Grabs the folder where the script runs.
