@@ -244,7 +244,14 @@ def delete_movie(payload, movie_id):
 @app.route('/')
 def index():
     return jsonify({
-        'message': 'HOME PAGE'
+        'message':'Welcome to Casting Agency API.',
+        'Endpoints available': {
+            '/actor':'POST, GET',
+            '/actor':'PATCH, DELETE',
+            '/movie':'POST, GET',
+            '/movie':'PATCH, DELETE',
+            '/movie/<int:movie_id>/actors': 'GET'
+        }
     })
 
 ## Error Handling ##
