@@ -21,14 +21,14 @@ class CastingAgencyTestCase(unittest.TestCase):
         setup_db(self.app, self.database_path)
         
         # UPDATE THE MOVIE ID'S BEFORE RUNNING THE UNIT TEST - these IDs are used for success tests #
-        self.movie_id_get = 1
-        self.movie_id_edit = 1
-        self.movie_id_delete = 1
+        self.movie_id_get = 2
+        self.movie_id_edit = 2
+        self.movie_id_delete = 2
 
         # UPDATE THE ACTOR ID'S BEFORE RUNNING THE UNIT TEST - these IDs are used for success tests #
-        self.actor_id_get = 1
-        self.actor_id_edit = 1
-        self.actor_id_delete = 1
+        self.actor_id_get = 2
+        self.actor_id_edit = 2
+        self.actor_id_delete = 2
 
         self.new_actor = {
             'name': 'Kavin Raju',
@@ -226,60 +226,63 @@ class CastingAgencyTestCase(unittest.TestCase):
         self.assertEqual(data['success'], False)
         self.assertEqual(data['message'], ErrorMessages.ERROR_422_MESSAGE.value)
 
-        """ Test for the endpoint 
-    DELETE '/movie/<int:movie_id>'
-    """
-    ## TEST 13 ##
-    # Success Test
-    def test_delete_movie(self):
-        # Update the movie ID to be deleted
-        movie_id = self.movie_id_delete
-        res = self.client().delete('/movie/{}'.format(movie_id))
-        data = json.loads(res.data)
+    ## To comment press Ctrl + k -> Ctrl + C ##
+    ## To uncomment press Ctrl + k -> Ctrl + U ##
 
-        self.assertEqual(res.status_code, 200)
-        self.assertEqual(data['success'], True)
-        self.assertTrue(data['deleted_movie'])
+    # """ Test for the endpoint 
+    # DELETE '/movie/<int:movie_id>'
+    # """
+    # ## TEST 13 ##
+    # # Success Test
+    # def test_delete_movie(self):
+    #     # Update the movie ID to be deleted
+    #     movie_id = self.movie_id_delete
+    #     res = self.client().delete('/movie/{}'.format(movie_id))
+    #     data = json.loads(res.data)
 
-    ## TEST 14 ##
-    # Error Test
-    def test_404_delete_movie_not_available(self): 
-        # Update the movie ID to be deleted
-        movie_id = 190873
-        res = self.client().delete('/movie/{}'.format(movie_id))
-        data = json.loads(res.data)
+    #     self.assertEqual(res.status_code, 200)
+    #     self.assertEqual(data['success'], True)
+    #     self.assertTrue(data['deleted_movie'])
 
-        self.assertEqual(res.status_code, 422)
-        self.assertEqual(data['success'], False)
-        self.assertEqual(data['message'], ErrorMessages.ERROR_422_MESSAGE.value)
+    # ## TEST 14 ##
+    # # Error Test
+    # def test_404_delete_movie_not_available(self): 
+    #     # Update the movie ID to be deleted
+    #     movie_id = 190873
+    #     res = self.client().delete('/movie/{}'.format(movie_id))
+    #     data = json.loads(res.data)
+
+    #     self.assertEqual(res.status_code, 422)
+    #     self.assertEqual(data['success'], False)
+    #     self.assertEqual(data['message'], ErrorMessages.ERROR_422_MESSAGE.value)
 
 
-    """ Test for the endpoint 
-    DELETE '/actor/<int:actor_id>'
-    """
-    ## TEST 15 ##
-    # Success Test
-    def test_delete_actor(self):
-        # Update the actor ID to be deleted
-        actor_id = self.actor_id_delete
-        res = self.client().delete('/actor/{}'.format(actor_id))
-        data = json.loads(res.data)
+    # """ Test for the endpoint 
+    # DELETE '/actor/<int:actor_id>'
+    # """
+    # ## TEST 15 ##
+    # # Success Test
+    # def test_delete_actor(self):
+    #     # Update the actor ID to be deleted
+    #     actor_id = self.actor_id_delete
+    #     res = self.client().delete('/actor/{}'.format(actor_id))
+    #     data = json.loads(res.data)
 
-        self.assertEqual(res.status_code, 200)
-        self.assertEqual(data['success'], True)
-        self.assertTrue(data['deleted_actor'])
+    #     self.assertEqual(res.status_code, 200)
+    #     self.assertEqual(data['success'], True)
+    #     self.assertTrue(data['deleted_actor'])
 
-    ## TEST 16 ##
-    # Error Test
-    def test_404_delete_actor_not_available(self):
-        # Update the movie ID to be deleted
-        actor_id = 190873
-        res = self.client().delete('/actor/{}'.format(actor_id))
-        data = json.loads(res.data)
+    # ## TEST 16 ##
+    # # Error Test
+    # def test_404_delete_actor_not_available(self):
+    #     # Update the movie ID to be deleted
+    #     actor_id = 190873
+    #     res = self.client().delete('/actor/{}'.format(actor_id))
+    #     data = json.loads(res.data)
 
-        self.assertEqual(res.status_code, 422)
-        self.assertEqual(data['success'], False)
-        self.assertEqual(data['message'], ErrorMessages.ERROR_422_MESSAGE.value)
+    #     self.assertEqual(res.status_code, 422)
+    #     self.assertEqual(data['success'], False)
+    #     self.assertEqual(data['message'], ErrorMessages.ERROR_422_MESSAGE.value)
 
 
         
