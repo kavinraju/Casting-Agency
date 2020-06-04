@@ -18,7 +18,7 @@ def setup_db(app, database_path=database_path_default):
     db.app = app
     db.init_app(app)
     migrate = Migrate(app, db)
-    db.create_all() # Uncomment this while running the unit test for the first time.
+    #db.create_all() # TODO Uncomment this while running the unit test for the first time.
 
 
 movie_actors = db.Table('movie_actors',
