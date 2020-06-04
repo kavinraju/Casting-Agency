@@ -4,7 +4,7 @@ import json
 
 from database.models import setup_db, Actor, Movie
 from app import app, ErrorMessages
-from auth.auth import requires_auth, AuthError
+from auth import requires_auth, AuthError
 
 """ POST """
 

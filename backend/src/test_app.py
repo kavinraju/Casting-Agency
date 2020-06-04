@@ -6,7 +6,7 @@ from app import app, ErrorMessages
 from database.models import setup_db, Movie, Actor
 
 """ keystore consists of all the passwords required for the backend """
-from environments.config.config import password, username, get_data_base_path
+from environments.config import password, username, get_data_base_path
 
 class CastingAgencyTestCase(unittest.TestCase):
     """This class represents the Casting Agency test case"""
@@ -21,13 +21,13 @@ class CastingAgencyTestCase(unittest.TestCase):
         setup_db(self.app, self.database_path)
         
         # UPDATE THE MOVIE ID'S BEFORE RUNNING THE UNIT TEST - these IDs are used for success tests #
-        self.movie_id_get = 2
-        self.movie_id_edit = 2
+        self.movie_id_get = 1
+        self.movie_id_edit = 1
         self.movie_id_delete = 1
 
         # UPDATE THE ACTOR ID'S BEFORE RUNNING THE UNIT TEST - these IDs are used for success tests #
-        self.actor_id_get = 2
-        self.actor_id_edit = 2
+        self.actor_id_get = 1
+        self.actor_id_edit = 1
         self.actor_id_delete = 1
 
         self.new_actor = {
