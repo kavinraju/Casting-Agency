@@ -75,7 +75,7 @@ def create_movie(payload):
 
 # Get actors of 'movie_id'
 @app.route('/movie/<int:movie_id>/actors',methods=['GET'])
-@requires_auth('get:movies, get:actors')
+@requires_auth('get:movie_actors')
 def get_actors_of_a_movie(payload, movie_id):
     movie = Movie.query.filter_by(id=movie_id).one_or_none()
     if movie is None:
