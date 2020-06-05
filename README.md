@@ -54,6 +54,25 @@ set API_AUDIENCE_ENV=casting
 
 ### Setting up backend
 
+Create a database `casting` in PostgreSQL using the following commands.<br>
+<b>For Linux:</b>
+```bash
+createdb casting
+```
+<b>For Windows:</b>
+```bash
+create database casting;
+```
+Run the following commands from same root directory to run the Migration Script to create the required tables:
+```bash
+python -m flask db init
+python -m flask db migrate
+python -m flask db upgrade
+```
+By default, the backend will run on `localhost:5000`
+
+### Run the flask application
+
 Before running the flask application run the following commands to set up the environment variables required by flask application.<br>
 <b>For Linux:</b>
 ```bash
@@ -170,7 +189,7 @@ Since all the requests to the API requires the `Bearer token` this project was f
 ```json
 {
 	"name": "Vijay",
-	"age": 30,
+	"age": 45,
 	"gender": "Male"
 }
 ```
@@ -183,7 +202,7 @@ Since all the requests to the API requires the `Bearer token` this project was f
 {
   "actors": [
     {
-      "age": 30,
+      "age": 45,
       "gender": "Male",
       "id": 1,
       "name": "Vijay"
@@ -223,8 +242,8 @@ Since all the requests to the API requires the `Bearer token` this project was f
 
 ```json
 {
-	"title": "Movie 1",
-	"release_date": "2020-05-05 18:51:16",
+	"title": "Friends",
+	"release_date": "2001-05-05 18:51:16",
 	"actors":[1]
 }
 ```
@@ -239,8 +258,8 @@ Since all the requests to the API requires the `Bearer token` this project was f
   "movies": [
     {
       "id": 1,
-      "release_date": "Tue, 05 May 2020 18:51:16 GMT",
-      "title": "Movie 1"
+      "release_date": "Sat, 05 May 2001 18:51:16 GMT",
+      "title": "Friends"
     }
   ],
   "success": true,
@@ -274,16 +293,94 @@ Since all the requests to the API requires the `Bearer token` this project was f
 
 ```json
 {
-  "actors": [
-    {
-      "age": 30,
-      "gender": "Male",
-      "id": 1,
-      "name": "Vijay"
-    }
-  ],
-  "success": true,
-  "total_actors": 1
+    "actors": [
+        {
+            "age": 45,
+            "gender": "Male",
+            "id": 1,
+            "name": "Vijay"
+        },
+        {
+            "age": 45,
+            "gender": "Male",
+            "id": 2,
+            "name": "Ajith"
+        },
+        {
+            "age": 69,
+            "gender": "Male",
+            "id": 3,
+            "name": "Rajinikanth"
+        },
+        {
+            "age": 65,
+            "gender": "Male",
+            "id": 4,
+            "name": "Kamal Haasan"
+        },
+        {
+            "age": 33,
+            "gender": "Female",
+            "id": 5,
+            "name": "Samantha Akkineni"
+        },
+        {
+            "age": 37,
+            "gender": "Female",
+            "id": 6,
+            "name": "Trisha Krishnan"
+        },
+        {
+            "age": 28,
+            "gender": "Female",
+            "id": 7,
+            "name": "Hansika Motwani"
+        },
+        {
+            "age": 34,
+            "gender": "Female",
+            "id": 8,
+            "name": "Kajal Aggarwal"
+        },
+        {
+            "age": 35,
+            "gender": "Male",
+            "id": 9,
+            "name": "Sivakarthikeyan"
+        },
+        {
+            "age": 54,
+            "gender": "Male",
+            "id": 10,
+            "name": "Vikram"
+        },
+        {
+            "age": 24,
+            "gender": "Female",
+            "id": 11,
+            "name": "Nivetha Thomas"
+        },
+        {
+            "age": 44,
+            "gender": "Male",
+            "id": 12,
+            "name": "Suriya"
+        },
+        {
+            "age": 28,
+            "gender": "Female",
+            "id": 13,
+            "name": "Amy Jackson"
+        },
+        {
+            "age": 52,
+            "gender": "Male",
+            "id": 14,
+            "name": "Akshay Kumar"
+        }
+    ],
+    "success": true,
+    "total_actors": 14
 }
 ```
 
@@ -313,15 +410,50 @@ Since all the requests to the API requires the `Bearer token` this project was f
 
 ```json
 {
-  "movies": [
-    {
-      "id": 1,
-      "release_date": "Tue, 05 May 2020 18:51:16 GMT",
-      "title": "Movie 1"
-    }
-  ],
-  "success": true,
-  "total_movies": 1
+    "movies": [
+        {
+            "id": 1,
+            "release_date": "Sat, 05 May 2001 18:51:16 GMT",
+            "title": "Friends"
+        },
+        {
+            "id": 2,
+            "release_date": "Thu, 09 Jan 2020 18:51:16 GMT",
+            "title": "Darbar"
+        },
+        {
+            "id": 3,
+            "release_date": "Fri, 12 Oct 2012 18:51:16 GMT",
+            "title": "Maattrraan"
+        },
+        {
+            "id": 4,
+            "release_date": "Sat, 14 Jan 2006 18:51:16 GMT",
+            "title": "Aathi"
+        },
+        {
+            "id": 5,
+            "release_date": "Sat, 17 Apr 2004 18:51:16 GMT",
+            "title": "Ghilli"
+        },
+        {
+            "id": 6,
+            "release_date": "Wed, 17 Apr 2013 18:51:16 GMT",
+            "title": "Singam II"
+        },
+        {
+            "id": 7,
+            "release_date": "Fri, 03 Jul 2015 18:51:16 GMT",
+            "title": "Papanasam"
+        },
+        {
+            "id": 8,
+            "release_date": "Fri, 03 Jul 2015 18:51:16 GMT",
+            "title": "2.0"
+        }
+    ],
+    "success": true,
+    "total_movies": 8
 }
 ```
 
@@ -351,15 +483,27 @@ Since all the requests to the API requires the `Bearer token` this project was f
 
 ```json
 {
-  "actors": [
-    {
-      "age": 30,
-      "gender": "Male",
-      "id": 1,
-      "name": "Vijay"
-    }
-  ],
-  "success": true
+    "actors": [
+        {
+            "age": 69,
+            "gender": "Male",
+            "id": 3,
+            "name": "Rajinikanth"
+        },
+        {
+            "age": 28,
+            "gender": "Female",
+            "id": 13,
+            "name": "Amy Jackson"
+        },
+        {
+            "age": 52,
+            "gender": "Male",
+            "id": 14,
+            "name": "Akshay Kumar"
+        }
+    ],
+    "success": true
 }
 ```
 
@@ -390,9 +534,9 @@ Since all the requests to the API requires the `Bearer token` this project was f
 
 ```json
 {
-	"title": "Movie 2000",
-	"release_date": "2020-05-05 08:51:16",
-	"actors":[1]
+	"title": "Friends",
+	"release_date": "2001-05-05 08:51:16",
+	"actors":[1, 12]
 }
 ```
 
@@ -403,11 +547,11 @@ Since all the requests to the API requires the `Bearer token` this project was f
 ```json
 {
   "success": true,
-  "total_movies": 1,
+  "total_movies": 8,
   "updated_movie": {
     "id": 1,
-    "release_date": "Tue, 05 May 2020 08:51:16 GMT",
-    "title": "Movie 2000"
+    "release_date": "Sat, 05 May 2001 18:51:16 GMT",
+    "title": "Friends"
   }
 }
 ```
@@ -439,7 +583,7 @@ Since all the requests to the API requires the `Bearer token` this project was f
 
 ```json
 {
-  "age": 31,
+  "age": 46,
   "gender": "Male",
   "name": "Vijay S"
 }
@@ -452,9 +596,9 @@ Since all the requests to the API requires the `Bearer token` this project was f
 ```json
 {
   "success": true,
-  "total_actors": 1,
+  "total_actors": 14,
   "updated_actor": {
-    "age": 31,
+    "age": 46,
     "gender": "Male",
     "id": 1,
     "name": "Vijay S"
@@ -491,7 +635,7 @@ Since all the requests to the API requires the `Bearer token` this project was f
 {
   "deleted_movie": 1,
   "success": true,
-  "total_movies": 0
+  "total_movies": 7
 }
 ```
 
@@ -524,11 +668,27 @@ Since all the requests to the API requires the `Bearer token` this project was f
 {
   "deleted_actor": 1,
   "success": true,
-  "total_actors": 0
+  "total_actors": 13
 }
 ```
 
 ## Tests
+
+In order to run test, navigate to the [root directory](https://github.com/kavinraju/Casting-Agency), run the following commands.<br>
+<b>For Linux:</b>
+```bash
+dropdb casting_test
+createdb casting_test
+psql casting_test < castingdbexport.psql
+python test_app.py
+```
+<b>For Windows:</b>
+```bash
+drop database casting_test;
+create database casting_test;
+psql casting_test < castingdbexport.psql user_name_of_db
+python test_app.py
+```
 
 ### Unittest
 This includes the tests for the endpoints without auth header (bearer token key). These tests check if the endpoints are working correctly by creating a test database [casting_test](https://github.com/kavinraju/Casting-Agency/blob/8a1743bc56da28323eb5b344c30de0febb6fddc8/test_app.py#L15) locally. To run this test <br>
@@ -548,7 +708,37 @@ python test_app.py
 First run the test with the code commented out for the endpoints <b>DELETE `/movie/<int:movie_id>`</b>, <b>DELETE `/actor/<int:actor_id>`</b>. Only while running endpoint test for the `DELETE endpoints` uncomment it. This is because sometimes the test runs parallelly which leads to test failure, as DELETE test run before GET/PATCH test run. It is available in [test_app.py](https://github.com/kavinraju/Casting-Agency/blob/8a1743bc56da28323eb5b344c30de0febb6fddc8/test_app.py#L229) file.
 
 ### POSTMAN Test
-Export the (Casting Agency.postman_collection.json)[] file and import it to the POSTMAN and test run the endpoints. By default this file consists of local endpoints only. Log into the application if the authorisation token gets expired.
+<b>There are two types of collection files available:</b>
+<ol>
+	<li><a href="https://github.com/kavinraju/Casting-Agency/blob/deployment/casting-agency-local-endpoints.postman_collection.json">With local endpoints</a></li>
+	<li><a href="https://github.com/kavinraju/Casting-Agency/blob/deployment/casting-agency-heroku-endpoints.postman_collection.json">With heroku endpoints</a></li>
+</ol>
+Import the files into the POSTMAN and test run the endpoints.<br>
+
+#### Tip: How to import the data into heruko db?
+Before doing this Reset Database for consistency purpose.
+```bash
+heroku pg:psql --app application_name_in_heroku < castingdbexport.pgsql
+```
+After importing the data from [castingdbexport.psql](https://github.com/kavinraju/Casting-Agency/blob/deployment/castingdbexport.pgsql) file, run the <a href="https://github.com/kavinraju/Casting-Agency/blob/deployment/casting-agency-heruko-endpoints.postman_collection.json">collection with heruko endpoints</a> to run all the test successfully.
+
+![casting-agency-heroku-endpoints](https://user-images.githubusercontent.com/24537737/83875022-0ae39580-a754-11ea-8bca-9c160d625eec.PNG)<br>
+
+#### Tip: How to import the data into local postgres db?
+<b>For Linux:</b>
+```bash
+psql casting_test < castingdbexport.psql
+```
+<b>For Windows:</b>
+```bash
+psql casting_test < castingdbexport.psql user_name_of_db
+or
+psql casting_test < castingdbexport.psql -U user_name_of_db
+```
+After importing the data from [castingdbexport.psql](https://github.com/kavinraju/Casting-Agency/blob/deployment/castingdbexport.pgsql) file, run the <a href="https://github.com/kavinraju/Casting-Agency/blob/deployment/casting-agency-local-endpoints.postman_collection.json">collection with local endpoints</a> to run all the test successfully.
+
+![casting-agency-local-endpoints](https://user-images.githubusercontent.com/24537737/83874848-c1934600-a753-11ea-83bb-dcb793ba3cdb.PNG)
+
 >> Login URL - https://casting-agency-fsnd.eu.auth0.com/authorize?audience=casting&response_type=token&client_id=YTFv82zJIbogLO8PWL61bVh23TrpXC7X&redirect_uri=http://localhost:5000
 
 
