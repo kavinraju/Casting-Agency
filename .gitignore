@@ -3,3 +3,4 @@ venv/
 __pycache__/
 casting-agency-fsnd/
 keystore.py
+env_file.py

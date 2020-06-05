@@ -20,15 +20,15 @@ class CastingAgencyTestCase(unittest.TestCase):
         self.database_path = database_path
         setup_db(self.app, self.database_path)
         
-        # UPDATE THE MOVIE ID'S BEFORE RUNNING THE UNIT TEST - these IDs are used for success tests #
-        self.movie_id_get = 2
-        self.movie_id_edit = 2
-        self.movie_id_delete = 2
+        # TODO UPDATE THE MOVIE ID'S BEFORE RUNNING THE UNIT TEST - these IDs are used for success tests #
+        self.movie_id_get = 1
+        self.movie_id_edit = 1
+        self.movie_id_delete = 1
 
-        # UPDATE THE ACTOR ID'S BEFORE RUNNING THE UNIT TEST - these IDs are used for success tests #
-        self.actor_id_get = 2
-        self.actor_id_edit = 2
-        self.actor_id_delete = 2
+        # TODO UPDATE THE ACTOR ID'S BEFORE RUNNING THE UNIT TEST - these IDs are used for success tests #
+        self.actor_id_get = 1
+        self.actor_id_edit = 1
+        self.actor_id_delete = 1
 
         self.new_actor = {
             'name': 'Kavin Raju',
