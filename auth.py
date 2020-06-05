@@ -35,7 +35,6 @@ def get_token_auth_header():
 
     # Get 'Authorization' header from the request
     headers_auth = request.headers.get('Authorization', None)
-    print(headers_auth)
     if not headers_auth:
        raise AuthError({
             'code': 'authorization_header_missing',

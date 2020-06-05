@@ -209,7 +209,6 @@ class CastingAgencyTestCase(unittest.TestCase):
         actor_id = self.actor_id_edit
         res = self.client().patch('/actor/{}'.format(actor_id) , json=self.update_actor)
         data = json.loads(res.data)
-        print('data: ',data)
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
         self.assertTrue(data['updated_actor'])

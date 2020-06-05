@@ -13,7 +13,6 @@ from auth import requires_auth, AuthError
 @requires_auth('create:actor')
 def create_actor(payload):
     body = request.get_json()
-    print('body ', body)
     if not body:
         abort(422)
     else:
@@ -42,7 +41,6 @@ def create_actor(payload):
 @requires_auth('create:movie')
 def create_movie(payload):
     body = request.get_json()
-    print('body ', body)
     if not body:
         abort(422)
     else:
@@ -54,7 +52,6 @@ def create_movie(payload):
             new_movie = Movie(title=title, release_date=release_date)
             
             for actor in actors:
-                print(actor)
                 actor_in_db = Actor.query.filter_by(id=actor).one_or_none()
 
                 if actor_in_db:
@@ -148,9 +145,7 @@ def update_movie(payload, movie_id):
             if actors is not None:
                 movie.actors = []
                 for actor_id in actors:
-                    print(actor_id, 'df')
                     actor_in_db = Actor.query.filter_by(id=actor_id).one_or_none()
-                    print(actor_in_db)
                     if actor_in_db:
                         movie.actors.append(actor_in_db)
 
