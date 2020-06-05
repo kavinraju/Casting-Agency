@@ -189,7 +189,7 @@ Since all the requests to the API requires the `Bearer token` this project was f
 ```json
 {
 	"name": "Vijay",
-	"age": 30,
+	"age": 45,
 	"gender": "Male"
 }
 ```
@@ -202,7 +202,7 @@ Since all the requests to the API requires the `Bearer token` this project was f
 {
   "actors": [
     {
-      "age": 30,
+      "age": 45,
       "gender": "Male",
       "id": 1,
       "name": "Vijay"
@@ -242,8 +242,8 @@ Since all the requests to the API requires the `Bearer token` this project was f
 
 ```json
 {
-	"title": "Movie 1",
-	"release_date": "2020-05-05 18:51:16",
+	"title": "Friends",
+	"release_date": "2001-05-05 18:51:16",
 	"actors":[1]
 }
 ```
@@ -258,8 +258,8 @@ Since all the requests to the API requires the `Bearer token` this project was f
   "movies": [
     {
       "id": 1,
-      "release_date": "Tue, 05 May 2020 18:51:16 GMT",
-      "title": "Movie 1"
+      "release_date": "Sat, 05 May 2001 18:51:16 GMT",
+      "title": "Friends"
     }
   ],
   "success": true,
@@ -293,16 +293,94 @@ Since all the requests to the API requires the `Bearer token` this project was f
 
 ```json
 {
-  "actors": [
-    {
-      "age": 30,
-      "gender": "Male",
-      "id": 1,
-      "name": "Vijay"
-    }
-  ],
-  "success": true,
-  "total_actors": 1
+    "actors": [
+        {
+            "age": 45,
+            "gender": "Male",
+            "id": 1,
+            "name": "Vijay"
+        },
+        {
+            "age": 45,
+            "gender": "Male",
+            "id": 2,
+            "name": "Ajith"
+        },
+        {
+            "age": 69,
+            "gender": "Male",
+            "id": 3,
+            "name": "Rajinikanth"
+        },
+        {
+            "age": 65,
+            "gender": "Male",
+            "id": 4,
+            "name": "Kamal Haasan"
+        },
+        {
+            "age": 33,
+            "gender": "Female",
+            "id": 5,
+            "name": "Samantha Akkineni"
+        },
+        {
+            "age": 37,
+            "gender": "Female",
+            "id": 6,
+            "name": "Trisha Krishnan"
+        },
+        {
+            "age": 28,
+            "gender": "Female",
+            "id": 7,
+            "name": "Hansika Motwani"
+        },
+        {
+            "age": 34,
+            "gender": "Female",
+            "id": 8,
+            "name": "Kajal Aggarwal"
+        },
+        {
+            "age": 35,
+            "gender": "Male",
+            "id": 9,
+            "name": "Sivakarthikeyan"
+        },
+        {
+            "age": 54,
+            "gender": "Male",
+            "id": 10,
+            "name": "Vikram"
+        },
+        {
+            "age": 24,
+            "gender": "Female",
+            "id": 11,
+            "name": "Nivetha Thomas"
+        },
+        {
+            "age": 44,
+            "gender": "Male",
+            "id": 12,
+            "name": "Suriya"
+        },
+        {
+            "age": 28,
+            "gender": "Female",
+            "id": 13,
+            "name": "Amy Jackson"
+        },
+        {
+            "age": 52,
+            "gender": "Male",
+            "id": 14,
+            "name": "Akshay Kumar"
+        }
+    ],
+    "success": true,
+    "total_actors": 14
 }
 ```
 
@@ -332,15 +410,50 @@ Since all the requests to the API requires the `Bearer token` this project was f
 
 ```json
 {
-  "movies": [
-    {
-      "id": 1,
-      "release_date": "Tue, 05 May 2020 18:51:16 GMT",
-      "title": "Movie 1"
-    }
-  ],
-  "success": true,
-  "total_movies": 1
+    "movies": [
+        {
+            "id": 1,
+            "release_date": "Sat, 05 May 2001 18:51:16 GMT",
+            "title": "Friends"
+        },
+        {
+            "id": 2,
+            "release_date": "Thu, 09 Jan 2020 18:51:16 GMT",
+            "title": "Darbar"
+        },
+        {
+            "id": 3,
+            "release_date": "Fri, 12 Oct 2012 18:51:16 GMT",
+            "title": "Maattrraan"
+        },
+        {
+            "id": 4,
+            "release_date": "Sat, 14 Jan 2006 18:51:16 GMT",
+            "title": "Aathi"
+        },
+        {
+            "id": 5,
+            "release_date": "Sat, 17 Apr 2004 18:51:16 GMT",
+            "title": "Ghilli"
+        },
+        {
+            "id": 6,
+            "release_date": "Wed, 17 Apr 2013 18:51:16 GMT",
+            "title": "Singam II"
+        },
+        {
+            "id": 7,
+            "release_date": "Fri, 03 Jul 2015 18:51:16 GMT",
+            "title": "Papanasam"
+        },
+        {
+            "id": 8,
+            "release_date": "Fri, 03 Jul 2015 18:51:16 GMT",
+            "title": "2.0"
+        }
+    ],
+    "success": true,
+    "total_movies": 8
 }
 ```
 
@@ -370,15 +483,27 @@ Since all the requests to the API requires the `Bearer token` this project was f
 
 ```json
 {
-  "actors": [
-    {
-      "age": 30,
-      "gender": "Male",
-      "id": 1,
-      "name": "Vijay"
-    }
-  ],
-  "success": true
+    "actors": [
+        {
+            "age": 69,
+            "gender": "Male",
+            "id": 3,
+            "name": "Rajinikanth"
+        },
+        {
+            "age": 28,
+            "gender": "Female",
+            "id": 13,
+            "name": "Amy Jackson"
+        },
+        {
+            "age": 52,
+            "gender": "Male",
+            "id": 14,
+            "name": "Akshay Kumar"
+        }
+    ],
+    "success": true
 }
 ```
 
@@ -409,9 +534,9 @@ Since all the requests to the API requires the `Bearer token` this project was f
 
 ```json
 {
-	"title": "Movie 2000",
-	"release_date": "2020-05-05 08:51:16",
-	"actors":[1]
+	"title": "Friends",
+	"release_date": "2001-05-05 08:51:16",
+	"actors":[1, 12]
 }
 ```
 
@@ -422,11 +547,11 @@ Since all the requests to the API requires the `Bearer token` this project was f
 ```json
 {
   "success": true,
-  "total_movies": 1,
+  "total_movies": 8,
   "updated_movie": {
     "id": 1,
-    "release_date": "Tue, 05 May 2020 08:51:16 GMT",
-    "title": "Movie 2000"
+    "release_date": "Sat, 05 May 2001 18:51:16 GMT",
+    "title": "Friends"
   }
 }
 ```
@@ -458,7 +583,7 @@ Since all the requests to the API requires the `Bearer token` this project was f
 
 ```json
 {
-  "age": 31,
+  "age": 46,
   "gender": "Male",
   "name": "Vijay S"
 }
@@ -471,9 +596,9 @@ Since all the requests to the API requires the `Bearer token` this project was f
 ```json
 {
   "success": true,
-  "total_actors": 1,
+  "total_actors": 14,
   "updated_actor": {
-    "age": 31,
+    "age": 46,
     "gender": "Male",
     "id": 1,
     "name": "Vijay S"
@@ -510,7 +635,7 @@ Since all the requests to the API requires the `Bearer token` this project was f
 {
   "deleted_movie": 1,
   "success": true,
-  "total_movies": 0
+  "total_movies": 7
 }
 ```
 
@@ -543,7 +668,7 @@ Since all the requests to the API requires the `Bearer token` this project was f
 {
   "deleted_actor": 1,
   "success": true,
-  "total_actors": 0
+  "total_actors": 13
 }
 ```
 
