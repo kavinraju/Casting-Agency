@@ -115,6 +115,32 @@ python -m flask run # before running this command make sure you complete authent
 ### Endpoints
 Since all the requests to the API requires the `Bearer token` this project was fully tested using [POSTMAN](https://www.postman.com/) and it'recommended too.
 
+#### GET  `/`
+<ul>
+   <li>Returns
+      <ul>
+	<li>Endpoints available</li>
+	<li>message</li>
+       </ul>          
+    </li>
+    <li>This endpoint is created to let the users know about the available endpoints, and a greeting message. There is a possibility of this endpoint data getting changed at sometime later. This endpoint is set as a redirecting URL after logging in successfully.</li>
+</ul>
+
+<ul>
+<li><b>Sample Response:</b></li>
+</ul>
+
+```json
+{
+  "Endpoints available": {
+    "/actor": "PATCH, DELETE", 
+    "/movie": "PATCH, DELETE", 
+    "/movie/<int:movie_id>/actors": "GET"
+  }, 
+  "message": "Welcome to Casting Agency API."
+}
+```
+
 #### POST `/actor`
 <ul>
   <li><b>Genral:</b></li>
@@ -530,9 +556,8 @@ Export the (Casting Agency.postman_collection.json)[] file and import it to the 
 Errors are returned as JSON objects in the following format:
 ```json
 {
-  "error": 404, 
-  "error_message": "404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.", 
-  "message": "Resource not found", 
+  "error": 404,
+  "message": "Resource not found",
   "success": false
 }
 ```
