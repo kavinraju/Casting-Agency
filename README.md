@@ -70,8 +70,8 @@ python -m flask run # before running this command make sure you complete authent
 >> NOTE: Replace the username & pass by your username & password of the postgresql server setup.
 
 
-# API Reference
-## Get Started
+## API Reference
+### Get Started
 - <b>Base URL:</b> This app is hosted at [Heroku](https://www.heroku.com/) and can be run locally.<br>
     <ul>
       <li>Local Base URL is <a href>http://127.0.0.1:5000/<a/></li>
@@ -112,10 +112,10 @@ python -m flask run # before running this command make sure you complete authent
     </ul>
   </ul>
 
-## Endpoints
+### Endpoints
 Since all the requests to the API requires the `Bearer token` this project was fully tested using [POSTMAN](https://www.postman.com/) and it'recommended too.
 
-### POST `/actor`
+#### POST `/actor`
 <ul>
   <li><b>Genral:</b></li>
     <ul>
@@ -169,7 +169,7 @@ Since all the requests to the API requires the `Bearer token` this project was f
 }
 ```
 
-### POST `/movie`
+#### POST `/movie`
 <ul>
   <li><b>Genral:</b></li>
     <ul>
@@ -222,7 +222,7 @@ Since all the requests to the API requires the `Bearer token` this project was f
 }
 ```
 
-### GET `/actor`
+#### GET `/actor`
 <ul>
   <li><b>Genral:</b></li>
     <ul>
@@ -261,7 +261,7 @@ Since all the requests to the API requires the `Bearer token` this project was f
 }
 ```
 
-### GET `/movie`
+#### GET `/movie`
 <ul>
   <li><b>Genral:</b></li>
     <ul>
@@ -299,7 +299,7 @@ Since all the requests to the API requires the `Bearer token` this project was f
 }
 ```
 
-### GET `/movie/<int:movie_id>/actors`
+#### GET `/movie/<int:movie_id>/actors`
 <ul>
   <li><b>Genral:</b></li>
     <ul>
@@ -337,7 +337,7 @@ Since all the requests to the API requires the `Bearer token` this project was f
 }
 ```
 
-### PATCH `/movie/<int:movie_id>`
+#### PATCH `/movie/<int:movie_id>`
 <ul>
   <li><b>Genral:</b></li>
     <ul>
@@ -386,7 +386,7 @@ Since all the requests to the API requires the `Bearer token` this project was f
 }
 ```
 
-### PATCH `/actor/<int:actor_id>`
+#### PATCH `/actor/<int:actor_id>`
 <ul>
   <li><b>Genral:</b></li>
     <ul>
@@ -436,7 +436,7 @@ Since all the requests to the API requires the `Bearer token` this project was f
 }
 ```
 
-### DELETE `/movie/<int:movie_id>`
+#### DELETE `/movie/<int:movie_id>`
 <ul>
   <li><b>Genral:</b></li>
     <ul>
@@ -469,7 +469,7 @@ Since all the requests to the API requires the `Bearer token` this project was f
 }
 ```
 
-### DELETE `/actor/<int:actor_id>`
+#### DELETE `/actor/<int:actor_id>`
 <ul>
   <li><b>Genral:</b></li>
     <ul>
@@ -501,6 +501,30 @@ Since all the requests to the API requires the `Bearer token` this project was f
   "total_actors": 0
 }
 ```
+
+## Tests
+
+### Unittest
+This includes the tests for the endpoints without auth header (bearer token key). These tests check if the endpoints are working correctly by creating a test database [casting_test](https://github.com/kavinraju/Casting-Agency/blob/8a1743bc56da28323eb5b344c30de0febb6fddc8/test_app.py#L15) locally. To run this test <br>
+- checkout to the [unittest branch](https://github.com/kavinraju/Casting-Agency/tree/unittest)
+- check all the `TODOs` provided in the [database/models.py](https://github.com/kavinraju/Casting-Agency/blob/8a1743bc56da28323eb5b344c30de0febb6fddc8/database/models.py#L21), [environments/config.py](https://github.com/kavinraju/Casting-Agency/blob/unittest/environments/config.py) files so that test runs properly. Few lines are commented out for the purpose of production code.
+
+In order to run the [test](test_app.py) of the endpoints, run the following commands.<br>
+<b>For Linux:</b>
+```bash
+python test_app.py
+```
+<b>For Windows:</b>
+```bash
+python test_app.py
+```
+<b>NOTE:</b>
+First run the test with the code commented out for the endpoints <b>DELETE `/movie/<int:movie_id>`</b>, <b>DELETE `/actor/<int:actor_id>`</b>. Only while running endpoint test for the `DELETE endpoints` uncomment it. This is because sometimes the test runs parallelly which leads to test failure, as DELETE test run before GET/PATCH test run. It is available in [test_app.py](https://github.com/kavinraju/Casting-Agency/blob/8a1743bc56da28323eb5b344c30de0febb6fddc8/test_app.py#L229) file.
+
+### POSTMAN Test
+Export the (Casting Agency.postman_collection.json)[] file and import it to the POSTMAN and test run the endpoints. By default this file consists of local endpoints only. Log into the application if the authorisation token gets expired.
+>> Login URL - https://casting-agency-fsnd.eu.auth0.com/authorize?audience=casting&response_type=token&client_id=YTFv82zJIbogLO8PWL61bVh23TrpXC7X&redirect_uri=http://localhost:5000
+
 
 ## Error Handling
 Errors are returned as JSON objects in the following format:
