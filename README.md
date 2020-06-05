@@ -588,13 +588,16 @@ First run the test with the code commented out for the endpoints <b>DELETE `/mov
 	<li><a href="https://github.com/kavinraju/Casting-Agency/blob/deployment/casting-agency-local-endpoints.postman_collection.json">With local endpoints</a></li>
 	<li><a href="https://github.com/kavinraju/Casting-Agency/blob/deployment/casting-agency-heroku-endpoints.postman_collection.json">With heroku endpoints</a></li>
 </ol>
-
-Import the files into the POSTMAN and test run the endpoints.
+Import the files into the POSTMAN and test run the endpoints.<br>
 
 #### Tip: How to import the data into heruko db?
+Before doing this Reset Database for consistency purpose.
 ```bash
 heroku pg:psql --app application_name_in_heroku < castingdbexport.pgsql
 ```
+After importing the data from [castingdbexport.psql](https://github.com/kavinraju/Casting-Agency/blob/deployment/castingdbexport.pgsql) file, run the <a href="https://github.com/kavinraju/Casting-Agency/blob/deployment/casting-agency-heruko-endpoints.postman_collection.json">collection with heruko endpoints</a> to run all the test successfully.
+
+![casting-agency-heroku-endpoints](https://user-images.githubusercontent.com/24537737/83875022-0ae39580-a754-11ea-8bca-9c160d625eec.PNG)<br>
 
 #### Tip: How to import the data into local postgres db?
 <b>For Linux:</b>
@@ -607,7 +610,9 @@ psql casting_test < castingdbexport.psql user_name_of_db
 or
 psql casting_test < castingdbexport.psql -U user_name_of_db
 ```
-[castingdbexport.psql](https://github.com/kavinraju/Casting-Agency/blob/deployment/castingdbexport.pgsql)
+After importing the data from [castingdbexport.psql](https://github.com/kavinraju/Casting-Agency/blob/deployment/castingdbexport.pgsql) file, run the <a href="https://github.com/kavinraju/Casting-Agency/blob/deployment/casting-agency-local-endpoints.postman_collection.json">collection with local endpoints</a> to run all the test successfully.
+
+![casting-agency-local-endpoints](https://user-images.githubusercontent.com/24537737/83874848-c1934600-a753-11ea-83bb-dcb793ba3cdb.PNG)
 
 >> Login URL - https://casting-agency-fsnd.eu.auth0.com/authorize?audience=casting&response_type=token&client_id=YTFv82zJIbogLO8PWL61bVh23TrpXC7X&redirect_uri=http://localhost:5000
 
