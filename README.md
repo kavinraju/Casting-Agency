@@ -35,6 +35,14 @@ This will install all of the required packages we selected within the `requireme
 
 ## Backend
 
+### Set up env_file.py locally
+Create a env_file.py file and add it in the [environments](https://github.com/kavinraju/Casting-Agency/tree/master/environments) directory. <b>This is required while running the unittest.</b><br>
+Add the following code to the env_file.py file:
+```python
+username_env = 'postgres_db_username'
+password_env = 'postgres_db_password'
+```
+
 ### Set up Authentication Locally
 Run the following commands to set up the environment variables required for authentication. <br>
 <b>For Linux:</b>
