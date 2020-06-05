@@ -583,7 +583,32 @@ python test_app.py
 First run the test with the code commented out for the endpoints <b>DELETE `/movie/<int:movie_id>`</b>, <b>DELETE `/actor/<int:actor_id>`</b>. Only while running endpoint test for the `DELETE endpoints` uncomment it. This is because sometimes the test runs parallelly which leads to test failure, as DELETE test run before GET/PATCH test run. It is available in [test_app.py](https://github.com/kavinraju/Casting-Agency/blob/8a1743bc56da28323eb5b344c30de0febb6fddc8/test_app.py#L229) file.
 
 ### POSTMAN Test
-Export the (Casting Agency.postman_collection.json)[] file and import it to the POSTMAN and test run the endpoints. By default this file consists of local endpoints only. Log into the application if the authorisation token gets expired.
+<b>There are two types of collection files available:</b>
+<ol>
+	<li><a href="https://github.com/kavinraju/Casting-Agency/blob/deployment/casting-agency-local-endpoints.postman_collection.json">With local endpoints</a></li>
+	<li><a href="https://github.com/kavinraju/Casting-Agency/blob/deployment/casting-agency-heroku-endpoints.postman_collection.json">With heroku endpoints</a></li>
+</ol>
+
+Import the files into the POSTMAN and test run the endpoints.
+
+#### Tip: How to import the data into heruko db?
+```bash
+heroku pg:psql --app application_name_in_heroku < castingdbexport.pgsql
+```
+
+#### Tip: How to import the data into local postgres db?
+<b>For Linux:</b>
+```bash
+psql casting_test < castingdbexport.psql
+```
+<b>For Windows:</b>
+```bash
+psql casting_test < castingdbexport.psql user_name_of_db
+or
+psql casting_test < castingdbexport.psql -U user_name_of_db
+```
+[castingdbexport.psql](https://github.com/kavinraju/Casting-Agency/blob/deployment/castingdbexport.pgsql)
+
 >> Login URL - https://casting-agency-fsnd.eu.auth0.com/authorize?audience=casting&response_type=token&client_id=YTFv82zJIbogLO8PWL61bVh23TrpXC7X&redirect_uri=http://localhost:5000
 
 
