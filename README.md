@@ -54,6 +54,25 @@ set API_AUDIENCE_ENV=casting
 
 ### Setting up backend
 
+Create a database `casting` in PostgreSQL using the following commands.<br>
+<b>For Linux:</b>
+```bash
+createdb casting
+```
+<b>For Windows:</b>
+```bash
+create database casting;
+```
+Run the following commands from same root directory to run the Migration Script to create the required tables:
+```bash
+python -m flask db init
+python -m flask db migrate
+python -m flask db upgrade
+```
+By default, the backend will run on `localhost:5000`
+
+### Run the flask application
+
 Before running the flask application run the following commands to set up the environment variables required by flask application.<br>
 <b>For Linux:</b>
 ```bash
@@ -529,6 +548,22 @@ Since all the requests to the API requires the `Bearer token` this project was f
 ```
 
 ## Tests
+
+In order to run test, navigate to the [root directory](https://github.com/kavinraju/Casting-Agency), run the following commands.<br>
+<b>For Linux:</b>
+```bash
+dropdb casting_test
+createdb casting_test
+psql casting_test < castingdbexport.psql
+python test_app.py
+```
+<b>For Windows:</b>
+```bash
+drop database casting_test;
+create database casting_test;
+psql casting_test < castingdbexport.psql user_name_of_db
+python test_app.py
+```
 
 ### Unittest
 This includes the tests for the endpoints without auth header (bearer token key). These tests check if the endpoints are working correctly by creating a test database [casting_test](https://github.com/kavinraju/Casting-Agency/blob/8a1743bc56da28323eb5b344c30de0febb6fddc8/test_app.py#L15) locally. To run this test <br>
