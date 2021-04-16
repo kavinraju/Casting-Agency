@@ -1,6 +1,8 @@
 # Casting Agency
 Casting Agency is a company that is responsible for creating movies and managing and assigning actors to those movies. This project implements REST API, authentication & authorization in [Flask](https://flask.palletsprojects.com/en/1.1.x/), role-based control design patterns - securing a REST API using [Auth0](https://auth0.com/), and hosted the same in [Heroku](https://www.heroku.com/).
 
+#### [Check out the API Documentation in GitHub Pages site](https://kavinraju.github.io/Casting-Agency/).
+
 #### This is the Capstone Project created as part of the Full Stack Web Developer Nanodegree program at Udacity.
 
 ## Getting Started
